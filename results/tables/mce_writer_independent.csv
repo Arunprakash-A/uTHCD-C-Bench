@@ -1,0 +1,10 @@
+model,writer_dependent_mce,writer_independent_mce_mean,writer_independent_mce_std
+convnext_tiny,0.8083,0.8062,0.0316
+swin_t,0.8506,0.9158,0.049
+vgg16_bn,1.0,1.0,0.0
+googlenet,0.9655,1.1316,0.2361
+efficientnet_b0,0.8805,1.1374,0.106
+squeezenet1_0,1.1299,1.3159,0.0853
+regnet_x_400mf,1.3803,1.4314,0.1131
+shufflenet_v2_x0_5,1.6145,2.1537,0.4817
+mnasnet0_5,2.0773,2.6518,0.5853
