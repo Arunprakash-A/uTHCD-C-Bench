@@ -57,11 +57,28 @@ Aggregate mCE (5-fold, ratio-of-sums; lower is better):
 3. Compare models by placing their result files alongside the reference and
    re-running `scripts/aggregate.py`.
 
+## Efficiency characteristics (Table 6)
+
+Parameter count, computational complexity (GMACs), and inference throughput
+depend only on the architecture, so they reproduce without the dataset or
+checkpoints:
+
+```bash
+python scripts/benchmark_efficiency.py        # A100, FP32, 224x224, batch size 128
+```
+
+Throughput is measured in evaluation mode under `torch.no_grad()`: 20 warm-up
+batches, then 60 timed batches, with `torch.cuda.synchronize()` around the timed
+region and `time.perf_counter` timing (`--batch_size/--warmup/--timed` to vary).
+Values are hardware-, precision-, and batch-size-dependent. GMACs use fvcore when
+available (matching the torchvision reference figures); install fvcore for
+transformer counts, as thop under-reports attention operations.
+
 ## Layout
 
 ```
 uthcd_c/        corruption suite, mCE metric, model builders, data loader
-scripts/        evaluate_model.py · aggregate.py · plot_heatmap.py
+scripts/        evaluate_model.py · aggregate.py · plot_heatmap.py · benchmark_efficiency.py
 results/raw/    per-model results for all protocols (inputs to every table/figure)
 data/           dataset instructions and expected layout
 ```
